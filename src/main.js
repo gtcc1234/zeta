@@ -4,6 +4,10 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import App from './App'
 import router from './router'
+import * as firebase from 'firebase'
+import { store } from './Store'
+import DateFilter from './filters/date'
+import CurrencyFilter from './filters/currency'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false

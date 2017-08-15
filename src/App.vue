@@ -29,6 +29,7 @@
         </v-toolbar>
 
     <main>
+      <router-view></router-view>
     </main>
 
     <v-footer fixed="fixed">

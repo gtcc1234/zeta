@@ -1,111 +1,47 @@
 <template>
   <v-app light>
-    <v-navigation-drawer
-      persistent
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      v-model="drawer"
-      enable-resize-watcher
-    >
-      <v-list>
-        <v-list-tile
-          value="true"
-          v-for="(item, i) in items"
-          :key="i"
-        >
-          <v-list-tile-action>
-            <v-icon light v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar fixed>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer" light></v-toolbar-side-icon>
-      <v-btn
-        icon
-        light
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        light
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        light
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>remove</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        icon
-        light
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>menu</v-icon>
-      </v-btn>
-    </v-toolbar>
+
+      <v-layout fill-height>
+        <v-flex xs1 m2 class="ml-3 mr-2" offset-xs-1 flexbox>
+          <img src="../src/assets/logo.png" height="50em"></img>
+        </v-flex>
+
+      <v-flex xs3 m4 class="ml-1 mr-3" flexbox>
+            <h3 class="black--text">FinMASH.</h3>
+      </v-flex>
+
+      <v-flex xs7 m6 class="ml3" flexbox align-center>
+          <h6 class="text-xs-center text-md-left primary--text">The latest and greatest of fintech.</h6>
+      </v-flex>
+
+    </v-layout>
+
+        <v-toolbar class="primary">
+          <v-toolbar-items>
+            <v-btn flat dark>Home</v-btn>
+            <v-btn flat dark>About</v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+
     <main>
-      <v-container fluid>
-        <v-slide-y-transition mode="out-in">
-          <v-layout column align-center>
-            <img src="/static/v.png" alt="Vuetify.js" class="mb-5">
-            <blockquote>
-              &#8220;First, solve the problem. Then, write the code.&#8221;
-              <footer>
-                <small>
-                  <em>&mdash;John Johnson</em>
-                </small>
-              </footer>
-            </blockquote>
-          </v-layout>
-        </v-slide-y-transition>
-      </v-container>
     </main>
-    <v-navigation-drawer
-      temporary
-      :right="right"
-      v-model="rightDrawer"
-    >
-      <v-list>
-        <v-list-tile @click="right = !right">
-          <v-list-tile-action>
-            <v-icon light>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer :fixed="fixed">
+
+    <v-footer fixed="fixed">
       <span>&copy; 2017</span>
     </v-footer>
+
+  </v-flex>
+
+
   </v-app>
+
 </template>
 
 <script>
   export default {
     data () {
       return {
-        clipped: false,
-        drawer: true,
-        fixed: false,
-        items: [
-          { icon: 'bubble_chart', title: 'Inspire' }
-        ],
-        miniVariant: false,
-        right: true,
-        rightDrawer: false,
-        title: 'Vuetify.js'
+        tabs: [1, 2, 3]
       }
     }
   }

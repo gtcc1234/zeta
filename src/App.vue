@@ -22,8 +22,9 @@
 
         <v-toolbar class="primary">
           <v-toolbar-items>
-            <v-btn flat dark>Home</v-btn>
-            <v-btn flat dark>About</v-btn>
+            <v-btn dark flat v-for="item in menuItems" :key="item.title" router :to="item.link">
+          {{ item.title }}
+        </v-btn>
           </v-toolbar-items>
         </v-toolbar>
 
@@ -42,13 +43,26 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        tabs: [1, 2, 3]
-      }
+export default {
+  data () {
+    return {
+      date: '',
+      menuItems: [
+        { title: 'Home', link: '/' },
+        { title: 'About', link: '/about' },
+        { title: 'List', link: '/list' }
+      ]
+    }
+  },
+  mounted () {
+    setInterval(this.updateDateTime, 1000)
+  },
+  methods: {
+    updateDateTime () {
+      this.date = new Date()
     }
   }
+}
 </script>
 
 <style lang="stylus">

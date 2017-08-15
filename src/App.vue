@@ -2,8 +2,12 @@
   <v-app light>
 
       <v-layout fill-height>
-        <v-flex xs1 m2 class="ml-3 mr-2" offset-xs-1 flexbox>
-          <img src="../src/assets/logo.png" height="50em"></img>
+        <v-flex xs1 m2 class="ml-3 mr-2 hidden-sm-and-up" offset-m-2 flexbox >
+          <img src="../src/assets/logo.png" height="60em"></img>
+        </v-flex>
+
+        <v-flex xs1 m2 class="ml-3 mr-2 hidden-xs-only" offset-xs-1 flexbox >
+          <img src="../src/assets/logo.png" height="70em"></img>
         </v-flex>
 
       <v-flex xs3 m4 class="ml-1 mr-3" flexbox>

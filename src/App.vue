@@ -45,13 +45,15 @@
 
 <script>
 export default {
+
   data () {
     return {
       date: '',
       menuItems: [
         { title: 'Home', link: '/' },
         { title: 'About', link: '/about' },
-        { title: 'List', link: '/list' }
+        { title: 'List', link: '/list' },
+        { title: 'Create', link: '/article/new' }
       ]
     }
   },

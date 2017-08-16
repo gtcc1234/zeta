@@ -36,13 +36,13 @@
 </template>
 
 <script>
-  export default {
-    computed: {
-      contents () {
-        return this.$store.getters.loadedContents
-      }
+export default {
+  computed: {
+    contents () {
+      return this.$store.getters.loadedArticles
     }
   }
+}
 </script>
 
 <style scoped>

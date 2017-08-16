@@ -6,19 +6,19 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    loadedContents: [],
+    loadedArticles: [],
     user: null
   },
   mutations: {
-    createContent (state, payload) {
-      state.loadedContents.push(payload)
+    createArticle (state, payload) {
+      state.loadedArticles.push(payload)
     },
     setUser (state, payload) {
       state.user = payload
     }
   },
   actions: {
-    createContent ({commit}, payload) {
+    createArticle ({commit}, payload) {
       const content = {
         title: payload.title,
         link: payload.link,
@@ -29,8 +29,11 @@ export const store = new Vuex.Store({
         date: payload.date
       }
       // Reach out to firebase to store
-      firebase.database().ref('Articles').push(content)
-      commit('createContent', content)
+      let articlesRef = firebase.database().ref('Articles')
+      let articleKey = articlesRef.push(content).key
+      let newID = { id: articleKey }
+      articlesRef.child(articleKey).update(newID)
+      commit('createArticle', content)
     },
     createUser ({commit}, payload) {
       firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password).then(user => {
@@ -45,12 +48,12 @@ export const store = new Vuex.Store({
     }
   },
   getters: {
-    loadedContents (state) {
-      return state.loadedContents.sort((contentA, contentB) => {
+    loadedArticles (state) {
+      return state.loadedArticle.sort((contentA, contentB) => {
         return contentA.date > contentB.date
       })
     },
-    featuredContents (state, getters) {
+    featuredArticles (state, getters) {
       return getters.loadedContents.slice(0, 6)
     },
     editContents (state, getters) {
@@ -59,10 +62,10 @@ export const store = new Vuex.Store({
     user (state) {
       return state.user
     },
-    loadedContent (state) {
-      return (contentId) => {
-        return state.loadedContents.find((content) => {
-          return content.id === contentId
+    loadedArticle (state) {
+      return (ArticleId) => {
+        return state.loadedArticles.find((content) => {
+          return content.id === ArticleId
         })
       }
     }

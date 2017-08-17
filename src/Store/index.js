@@ -32,7 +32,7 @@ export const store = new Vuex.Store({
     user: null
   },
   mutations: {
-    createContent (state, payload) {
+    createArticle (state, payload) {
       state.loadedContents.push(payload)
     },
     setUser (state, payload) {
@@ -40,7 +40,7 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    createContent ({commit}, payload) {
+    createArticle ({commit}, payload) {
       const content = {
         title: payload.title,
         link: payload.link,
@@ -56,7 +56,7 @@ export const store = new Vuex.Store({
       let articleKey = articlesRef.push(content).key
       let newID = { id: articleKey }
       articlesRef.child(articleKey).update(newID)
-      commit('createContent', content)
+      commit('createArticle', content)
     },
     createUser ({commit}, payload) {
       firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password).then(user => {

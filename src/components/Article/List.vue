@@ -4,7 +4,7 @@
       <v-flex xs10 sm8 md7 offset-md1>
         <v-layout row>
           <v-flex xs12>
-            <h6 class="primary--text">Top News</h6>
+            <h6 class="primary--text">List All Articles:</h6>
           </v-flex>
         </v-layout>
 

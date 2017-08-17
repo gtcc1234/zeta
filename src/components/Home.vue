@@ -25,10 +25,10 @@
                         </div>
                     </v-flex>
 
-                    <v-flex>
+                    <v-flex m3>
                         <v-card-media
                         :src="content.imageUrl"
-                        height="40px"></v-card-media>
+                        height="50px" contain></v-card-media>
                     </v-flex>
 
 

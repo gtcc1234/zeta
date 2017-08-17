@@ -9,11 +9,11 @@
     <v-flex xs12 sm6 offset-sm3>
       <form @submit.prevent="onCreateArticle">
         <v-layout row>
-          <v-layout row>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-text-field name="link" label="Link" id="link" v-model="link" required></v-text-field>
-            </v-flex>
-          </v-layout>
+          <v-flex xs12 sm6 offset-sm3>
+            <v-text-field name="link" label="Link" id="link" v-model="link" required></v-text-field>
+          </v-flex>
+        </v-layout>
+        <v-layout row>
           <v-flex xs12 sm6 offset-sm3>
             <v-text-field name="title" label="Title" id="title" v-model="title" required></v-text-field>
           </v-flex>
@@ -28,6 +28,7 @@
             <v-text-field name="publication" label="Publication" id="publication" v-model="publication" required></v-text-field>
           </v-flex>
         </v-layout>
+        <v-layout row>
           <v-flex xs12 sm6 offset-sm3>
             <v-text-field name="description" label="Description" id="description" v-model="description" multi-line required></v-text-field>
           </v-flex>
@@ -42,7 +43,6 @@
             <img :src="imageUrl" height=200px></img>
           </v-flex>
         </v-layout>
-        <v-layout row>
         <v-layout row>
           <v-flex xs12 sm6 offset-sm3>
             <v-btn class="primary" :disabled="!formIsValid" type="Submit">Create Content</v-btn>

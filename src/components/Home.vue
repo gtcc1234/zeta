@@ -7,67 +7,41 @@
             <h6 class="primary--text">Top News</h6>
           </v-flex>
         </v-layout>
+
         <v-layout row wrap v-for="content in contents" :key="content.id" class="ml-1">
+
           <v-flex xs12>
               <a v-bind:href="content.link">
+
                   <v-layout row>
-                    <v-flex xs10 sm11 md7  flexbox>
-                      <v-card-title primary-title>
+
+                    <v-flex>
                         <div>
-                        {{ content.author }} |  {{ content.publication }}
+                        {{ content.publication }} |  {{ content.author }}
                         </div>
                         <div>
-                          <h5 class="black--text mb-0">{{ content.title }}</h5>
+                          <h6 class="black--text mb-0">{{ content.title }}</h6>
                           <div>{{ content.description }}</div>
                         </div>
-                      </v-card-title>
                     </v-flex>
-                    <v-flex xs4 sm3 md2 class="hidden-sm-and-down">
+
+                    <v-flex>
                         <v-card-media
                         :src="content.imageUrl"
-                        height="40px"
-                        contain
-                        ></v-card-media>
+                        height="40px"></v-card-media>
                     </v-flex>
+
+
                   </v-layout>
+
               </a>
-            <v-divider inset></v-divider>
+
+            <v-divider></v-divider>
           </v-flex>
+
       </v-layout>
 
-        <v-layout row>
-          <h5 class="primary--text"> Editor's Picks: Analysis and Commentary</h5>
-        </v-layout>
-        <v-layout row wrap v-for="editor in editors" :key="editor.id" class="mb-2">
-          <v-flex>
 
-              <a v-bind:href="editor.link">
-                <v-container fluid>
-                  <v-layout row>
-                    <v-flex xs10 sm11 md7>
-                      <v-card-title primary-title>
-                        <div>
-                        {{ editor.author }} |  {{ editor.publication }}
-                        </div>
-                        <div>
-                          <h5 class="black--text mb-0">{{ editor.title }}</h5>
-                          <div>{{ editor.description }}</div>
-                        </div>
-                      </v-card-title>
-                    </v-flex>
-                    <v-flex xs4 sm3 md2 class="hidden-sm-and-down">
-                        <v-card-media
-                        :src="editor.imageUrl"
-                        height="130px"
-                        contain
-                        ></v-card-media>
-                    </v-flex>
-                  </v-layout>
-                </v-container>
-              </a>
-            <v-divider inset></v-divider>
-          </v-flex>
-        </v-layout>
       </v-flex>
 
       <v-flex class="hidden-xs-only " sm4 md3 offset-md1>
@@ -156,7 +130,6 @@ a:link    {
   /* Applies to all unvisited links */
   text-decoration:  none;
   background-color: white;
-  color:            blue;
   }
 
 </style>

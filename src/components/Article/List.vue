@@ -24,14 +24,6 @@
                           <div>{{ content.description }}</div>
                         </div>
                     </v-flex>
-
-                    <v-flex>
-                        <v-card-media
-                        :src="content.imageUrl"
-                        height="40px"></v-card-media>
-                    </v-flex>
-
-
                   </v-layout>
 
               </a>

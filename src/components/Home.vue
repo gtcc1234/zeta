@@ -3,39 +3,37 @@
     <v-layout row>
       <v-flex xs10 sm8 md7 offset-md1>
         <v-layout row>
-          <h6 class="primary--text">Top News</h6>
+          <v-flex xs12>
+            <h6 class="primary--text">Top News</h6>
+          </v-flex>
         </v-layout>
-
-            <v-layout row wrap v-for="content in contents" :key="content.id" class="mb-2">
-              <v-flex>
-
-                  <a v-bind:href="content.link">
-                    <v-container fluid>
-                      <v-layout row>
-                        <v-flex xs10 sm11 md7>
-                          <v-card-title primary-title>
-                            <div>
-                            {{ content.author }} |  {{ content.publication }}
-                            </div>
-                            <div>
-                              <h5 class="black--text mb-0">{{ content.title }}</h5>
-                              <div>{{ content.description }}</div>
-                            </div>
-                          </v-card-title>
-                        </v-flex>
-                        <v-flex xs4 sm3 md2 class="hidden-sm-and-down">
-                            <v-card-media
-                            :src="content.imageUrl"
-                            height="130px"
-                            contain
-                            ></v-card-media>
-                        </v-flex>
-                      </v-layout>
-                    </v-container>
-                  </a>
-                <v-divider inset></v-divider>
-              </v-flex>
-          </v-layout>
+        <v-layout row wrap v-for="content in contents" :key="content.id" class="ml-1">
+          <v-flex xs12>
+              <a v-bind:href="content.link">
+                  <v-layout row>
+                    <v-flex xs10 sm11 md7  flexbox>
+                      <v-card-title primary-title>
+                        <div>
+                        {{ content.author }} |  {{ content.publication }}
+                        </div>
+                        <div>
+                          <h5 class="black--text mb-0">{{ content.title }}</h5>
+                          <div>{{ content.description }}</div>
+                        </div>
+                      </v-card-title>
+                    </v-flex>
+                    <v-flex xs4 sm3 md2 class="hidden-sm-and-down">
+                        <v-card-media
+                        :src="content.imageUrl"
+                        height="40px"
+                        contain
+                        ></v-card-media>
+                    </v-flex>
+                  </v-layout>
+              </a>
+            <v-divider inset></v-divider>
+          </v-flex>
+      </v-layout>
 
         <v-layout row>
           <h5 class="primary--text"> Editor's Picks: Analysis and Commentary</h5>
@@ -110,27 +108,31 @@
 </template>
 
 <script>
+  import firebase from 'firebase'
   export default {
     data () {
       return {
         btc: '',
         eth: '',
         ltc: '',
-        email: ''
+        email: '',
+        contents: []
       }
     },
     computed: {
       formIsValid () {
         return this.email !== ''
       },
-      contents () {
-        return this.$store.getters.featuredContents
-      },
       editors () {
         return this.$store.getters.editContents
       }
     },
     mounted () {
+      let artRef = firebase.database().ref('Articles')
+      artRef.on('child_added', snap => {
+        this.contents.push(snap.val())
+        // console.log(this.contents)
+      })
       setInterval(this.load, 1000)
     },
     methods: {

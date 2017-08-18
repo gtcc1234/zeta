@@ -8,6 +8,17 @@
           </v-flex>
         </v-layout>
 
+        <v-layout>
+          <v-flex xs12 class="text-xs-center">
+            <v-progress-circular
+            indeterminate
+            class="primary--text"
+            :width="7"
+            :size="70"
+            v-if="loading"></v-progress-circular>
+          </v-flex>
+        </v-layout>
+
         <v-layout row wrap v-for="content in contents" :key="content.id" class="ml-1">
 
           <v-flex xs12>
@@ -83,18 +94,22 @@
 </template>
 
 <script>
-  import firebase from 'firebase'
   export default {
     data () {
       return {
         btc: '',
         eth: '',
         ltc: '',
-        email: '',
-        contents: []
+        email: ''
       }
     },
     computed: {
+      contents () {
+        return this.$store.getters.loadedArticles
+      },
+      loading () {
+        return this.$store.getters.loading
+      },
       formIsValid () {
         return this.email !== ''
       },
@@ -103,11 +118,6 @@
       }
     },
     mounted () {
-      let artRef = firebase.database().ref('Articles')
-      artRef.on('child_added', snap => {
-        this.contents.push(snap.val())
-        // console.log(this.contents)
-      })
       setInterval(this.load, 1000)
     },
     methods: {

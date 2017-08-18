@@ -85,11 +85,13 @@
         btc: '',
         eth: '',
         ltc: '',
-        email: '',
-        contents: []
+        email: ''
       }
     },
     computed: {
+      contents () {
+        return this.$store.getters.loadedArticles
+      },
       formIsValid () {
         return this.email !== ''
       },
@@ -98,11 +100,6 @@
       }
     },
     mounted () {
-      let artRef = firebase.database().ref('Articles')
-      artRef.on('child_added', snap => {
-        this.contents.push(snap.val())
-        // console.log(this.contents)
-      })
       setInterval(this.load, 1000)
     },
     methods: {

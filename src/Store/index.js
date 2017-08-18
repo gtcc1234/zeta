@@ -6,18 +6,59 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    loadedContents: [],
-    user: null
+    loadedArticles: [],
+    user: null,
+    loading: false,
+    error: null
   },
   mutations: {
+    setLoadedArticles (state, payload) {
+      state.loadedArticles = payload
+    },
     createArticle (state, payload) {
-      state.loadedContents.push(payload)
+      state.loadedArticles.push(payload)
     },
     setUser (state, payload) {
       state.user = payload
+    },
+    setLoading (state, payload) {
+      state.loading = payload
+    },
+    setError (state, payload) {
+      state.error = payload
+    },
+    clearError (state) {
+      state.error = null
     }
   },
   actions: {
+    loadArticles ({commit}) {
+      commit('setLoading', true)
+      firebase.database().ref('Articles').once('value')
+        .then((data) => {
+          const articles = []
+          const obj = data.val()
+          for (let key in obj) {
+            articles.push({
+              id: key,
+              title: obj[key].title,
+              author: obj[key].author,
+              publication: obj[key].publication,
+              description: obj[key].description,
+              imageUrl: obj[key].imageUrl,
+              date: obj[key].date
+            })
+          }
+          commit('setLoadedArticles', articles)
+          commit('setLoading', false)
+        })
+        .catch(
+          (error) => {
+            console.log(error)
+            commit('setLoading', false)
+          }
+        )
+    },
     createArticle ({commit}, payload) {
       const content = {
         title: payload.title,
@@ -51,26 +92,27 @@ export const store = new Vuex.Store({
     }
   },
   getters: {
-    loadedContents (state) {
-      return state.loadedContents.sort((contentA, contentB) => {
-        return contentA.date > contentB.date
-      })
+    loadedArticles (state) {
+      return state.loadedArticles
     },
-    featuredContents (state, getters) {
-      return getters.loadedContents.slice(0, 6)
+    featuredArticles (state, getters) {
+      return getters.loadedArticles.slice(0, 6)
     },
-    editContents (state, getters) {
-      return getters.loadedContents.slice(0, 3)
+    loadedMeetup (state) {
+      return (contentId) => {
+        return state.loadedArticles.find((article) => {
+          return article.id === contentId
+        })
+      }
     },
     user (state) {
       return state.user
     },
-    loadedContent (state) {
-      return (contentId) => {
-        return state.loadedContents.find((content) => {
-          return content.id === contentId
-        })
-      }
+    loading (state) {
+      return state.loading
+    },
+    error (state) {
+      return state.error
     }
   }
 })

@@ -31,8 +31,8 @@
                         {{ content.author }}  |  {{ content.publication }}
                         </div>
                         <div>
-                          <h6 class="black--text mb-0">{{ content.title }}</h6>
-                          <div>{{ content.description }}</div>
+                          <h6 class="primary--text mb-0">{{ content.title }}</h6>
+                          <div class="black--text">{{ content.description }}</div>
                         </div>
                     </v-flex>
 
@@ -104,6 +104,12 @@
       }
     },
     computed: {
+      tops () {
+        return this.$store.getters.tops
+      },
+      editorials () {
+        return this.$store.getters.editorials
+      },
       contents () {
         return this.$store.getters.loadedArticles
       },

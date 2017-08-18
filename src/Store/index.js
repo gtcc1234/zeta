@@ -7,6 +7,8 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     loadedArticles: [],
+    editorials: [],
+    tops: [],
     user: null,
     loading: false,
     error: null
@@ -17,6 +19,10 @@ export const store = new Vuex.Store({
     },
     createArticle (state, payload) {
       state.loadedArticles.push(payload)
+    },
+    setTops (state, payload) {
+      state.tops.push(payload)
+      console.log(state.tops)
     },
     setUser (state, payload) {
       state.user = payload
@@ -33,8 +39,14 @@ export const store = new Vuex.Store({
   },
   actions: {
     loadArticles ({commit}) {
+      // set to loading
       commit('setLoading', true)
-      firebase.database().ref('Articles').once('value')
+      // db ref load Articles and value
+      let db = firebase.database()
+      let articleRef = db.ref('Articles')
+      let topsRef = db.ref('Tops')
+      // let editorialsRef = db.ref('Editorials')
+      articleRef.once('value')
         .then((data) => {
           const articles = []
           const obj = data.val()
@@ -49,7 +61,31 @@ export const store = new Vuex.Store({
               date: obj[key].date
             })
           }
+          // call on mutation
           commit('setLoadedArticles', articles)
+          // set Tops
+          topsRef.once('value').then((data) => {
+            const tops = []
+            const obj = data.val()
+            for (let key in obj) {
+              articleRef.child(obj[key].id).once('value').then((data) => {
+                const obj1 = data.val()
+                tops.push({
+                  id: obj1.id,
+                  title: obj1.title,
+                  author: obj1.author,
+                  publication: obj1.publication,
+                  description: obj1.description,
+                  imageUrl: obj1.imageUrl,
+                  date: obj1.date
+                })
+              })
+              // console.log(tops)
+              commit('setTops', tops)
+            }
+          })
+          // console.log(editorialsRef)
+          // set loading to false
           commit('setLoading', false)
         })
         .catch(
@@ -92,18 +128,12 @@ export const store = new Vuex.Store({
     }
   },
   getters: {
+
     loadedArticles (state) {
       return state.loadedArticles
     },
-    featuredArticles (state, getters) {
-      return getters.loadedArticles.slice(0, 6)
-    },
-    loadedMeetup (state) {
-      return (contentId) => {
-        return state.loadedArticles.find((article) => {
-          return article.id === contentId
-        })
-      }
+    tops (state, getters) {
+      return state.tops.slice(0, 6)
     },
     user (state) {
       return state.user

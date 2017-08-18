@@ -26,15 +26,17 @@ export const store = new Vuex.Store({
         description: payload.description,
         author: payload.author,
         publication: payload.publication,
-        date: payload.date
+        date: payload.date.toISOString()
       }
       // Reach out to firebase to store
-      // Reach out to firebase to store
-      let articlesRef = firebase.database().ref('Articles')
-      let articleKey = articlesRef.push(content).key
-      let newID = { id: articleKey }
-      articlesRef.child(articleKey).update(newID)
-      commit('createArticle', content)
+      firebase.database().ref('Articles').push(content).then((data) => {
+        const key = data.key
+        firebase.database().ref('Articles').child(key).update({id: key})
+        commit('createArticle', {...content, id: key})
+      })
+      .catch((error) => {
+        console.log(error)
+      })
     },
     createUser ({commit}, payload) {
       firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password).then(user => {

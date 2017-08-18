@@ -15,9 +15,9 @@
 
                   <v-layout row>
 
-                    <v-flex>
+                    <v-flex xs8 sm9 md10>
                         <div>
-                        {{ content.publication }} |  {{ content.author }}
+                        {{ content.author }}  |  {{ content.publication }}
                         </div>
                         <div>
                           <h6 class="black--text mb-0">{{ content.title }}</h6>
@@ -25,12 +25,13 @@
                         </div>
                     </v-flex>
 
-                    <v-flex m3>
-                        <v-card-media
-                        :src="content.imageUrl"
-                        height="50px" contain></v-card-media>
-                    </v-flex>
-
+                    <v-flex xs4 sm3 md2 class="hidden-sm-and-down">
+                          <v-card-media
+                          :src="content.imageUrl"
+                          height="60px"
+                          contain
+                          ></v-card-media>
+                        </v-flex>
 
                   </v-layout>
 

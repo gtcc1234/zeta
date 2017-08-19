@@ -22,8 +22,7 @@
         <v-layout row wrap v-for="content in contents" :key="content.id" class="ml-1">
 
           <v-flex xs12>
-              <a v-bind:href="content.link">
-
+            <a v-bind:href="content.link">
                   <v-layout row>
 
                     <v-flex xs8 sm9 md10>
@@ -46,7 +45,7 @@
 
                   </v-layout>
 
-              </a>
+                </a>
 
             <v-divider></v-divider>
           </v-flex>

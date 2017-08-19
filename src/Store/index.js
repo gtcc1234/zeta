@@ -22,7 +22,7 @@ export const store = new Vuex.Store({
     },
     setTops (state, payload) {
       state.tops.push(payload)
-      console.log(state.tops)
+      // .log(state.tops)
     },
     setUser (state, payload) {
       state.user = payload

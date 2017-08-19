@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import About from '@/components/About'
 import List from '@/components/Article/List'
 import CreateArticle from '@/components/Article/createArticle'
+import CreateTop from '@/components/Article/createTop'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/article/new',
       name: 'CreateArticle',
       component: CreateArticle
+    },
+    {
+      path: '/article/newTop',
+      name: 'CreateTop',
+      component: CreateTop
     }
   ],
   mode: 'history'

@@ -53,7 +53,8 @@ export default {
         { title: 'Home', link: '/' },
         { title: 'About', link: '/about' },
         { title: 'List', link: '/list' },
-        { title: 'Create', link: '/article/new' }
+        { title: 'Create Article', link: '/article/new' },
+        { title: 'Create Top News', link: '/article/newTop' }
       ]
     }
   },

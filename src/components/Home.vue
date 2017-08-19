@@ -4,7 +4,7 @@
       <v-flex xs10 sm8 md7 offset-md1>
         <v-layout row>
           <v-flex xs12>
-            <h6 class="primary--text">Top News</h6>
+            <h6 class="primary--text">Articles</h6>
           </v-flex>
         </v-layout>
 
@@ -51,6 +51,60 @@
           </v-flex>
 
       </v-layout>
+
+      <v-layout row>
+        <v-flex xs10 sm8 md7 offset-md1>
+          <v-layout row>
+            <v-flex xs12>
+              <h6 class="primary--text">Top News</h6>
+            </v-flex>
+          </v-layout>
+
+          <v-layout>
+            <v-flex xs12 class="text-xs-center">
+              <v-progress-circular
+              indeterminate
+              class="primary--text"
+              :width="7"
+              :size="70"
+              v-if="loading"></v-progress-circular>
+            </v-flex>
+          </v-layout>
+
+          <v-layout row wrap v-for="top in tops" :key="top.id" class="ml-1">
+
+            <v-flex xs12>
+              <a v-bind:href="top.link">
+                    <v-layout row>
+
+                      <v-flex xs8 sm9 md10>
+                          <div>
+                          {{ top.author }}  |  {{ top.publication }}
+                          </div>
+                          <div>
+                            <h6 class="primary--text mb-0">{{ top.title }}</h6>
+                            <div class="black--text">{{ top.description }}</div>
+                          </div>
+                      </v-flex>
+
+                      <v-flex xs4 sm3 md2 class="hidden-sm-and-down">
+                            <v-card-media
+                            :src="top.imageUrl"
+                            height="60px"
+                            contain
+                            ></v-card-media>
+                          </v-flex>
+
+                    </v-layout>
+
+                  </a>
+
+              <v-divider></v-divider>
+            </v-flex>
+
+        </v-layout>
+      </v-flex>
+    </v-layout>
 
 
       </v-flex>

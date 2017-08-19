@@ -21,8 +21,15 @@ export const store = new Vuex.Store({
       state.loadedArticles.push(payload)
     },
     setTops (state, payload) {
+      state.tops = payload
+    },
+    createTops (state, payload) {
       state.tops.push(payload)
-      // .log(state.tops)
+      console.log('Creating Top News')
+      console.log(state.tops)
+    },
+    setEditorials (state, payload) {
+      state.editorials.push(payload)
     },
     setUser (state, payload) {
       state.user = payload
@@ -39,13 +46,10 @@ export const store = new Vuex.Store({
   },
   actions: {
     loadArticles ({commit}) {
-      // set to loading
       commit('setLoading', true)
-      // db ref load Articles and value
       let db = firebase.database()
       let articleRef = db.ref('Articles')
-      let topsRef = db.ref('Tops')
-      // let editorialsRef = db.ref('Editorials')
+
       articleRef.once('value')
         .then((data) => {
           const articles = []
@@ -58,32 +62,46 @@ export const store = new Vuex.Store({
               publication: obj[key].publication,
               description: obj[key].description,
               imageUrl: obj[key].imageUrl,
-              date: obj[key].date
+              date: obj[key].date,
+              link: obj[key].link
             })
           }
           // call on mutation
           commit('setLoadedArticles', articles)
-          // set Tops
-          topsRef.once('value').then((data) => {
-            const tops = []
-            const obj = data.val()
-            for (let key in obj) {
-              articleRef.child(obj[key].id).once('value').then((data) => {
-                const obj1 = data.val()
-                tops.push({
-                  id: obj1.id,
-                  title: obj1.title,
-                  author: obj1.author,
-                  publication: obj1.publication,
-                  description: obj1.description,
-                  imageUrl: obj1.imageUrl,
-                  date: obj1.date
-                })
-              })
-              // console.log(tops)
-              commit('setTops', tops)
-            }
-          })
+          // console.log(editorialsRef)
+          // set loading to false
+          commit('setLoading', false)
+        })
+        .catch(
+          (error) => {
+            console.log(error)
+            commit('setLoading', false)
+          }
+        )
+    },
+    loadTops ({commit}) {
+      commit('setLoading', true)
+      let db = firebase.database()
+      let topRef = db.ref('Tops')
+
+      topRef.once('value')
+        .then((data) => {
+          const tops = []
+          const obj = data.val()
+          for (let key in obj) {
+            tops.push({
+              id: key,
+              title: obj[key].title,
+              author: obj[key].author,
+              publication: obj[key].publication,
+              description: obj[key].description,
+              imageUrl: obj[key].imageUrl,
+              date: obj[key].date,
+              link: obj[key].link
+            })
+          }
+          // call on mutation
+          commit('setTops', tops)
           // console.log(editorialsRef)
           // set loading to false
           commit('setLoading', false)
@@ -115,6 +133,26 @@ export const store = new Vuex.Store({
         console.log(error)
       })
     },
+    createTops ({commit}, payload) {
+      const content = {
+        title: payload.title,
+        link: payload.link,
+        imageUrl: payload.imageUrl,
+        description: payload.description,
+        author: payload.author,
+        publication: payload.publication,
+        date: payload.date.toISOString()
+      }
+      // Reach out to firebase to store
+      firebase.database().ref('Tops').push(content).then((data) => {
+        const key = data.key
+        firebase.database().ref('Tops').child(key).update({id: key})
+        commit('createTops', {...content, id: key})
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    },
     createUser ({commit}, payload) {
       firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password).then(user => {
         const newUser = {
@@ -128,7 +166,6 @@ export const store = new Vuex.Store({
     }
   },
   getters: {
-
     loadedArticles (state) {
       return state.loadedArticles
     },

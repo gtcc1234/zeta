@@ -2,12 +2,12 @@
 <v-container>
   <v-layout row>
     <v-flex xs12>
-      <h4 class="secondary--text"> Create New Article </h4>
+      <h4 class="secondary--text"> Create New Top News </h4>
     </v-flex>
   </v-layout>
   <v-layout row>
     <v-flex xs12 sm6 offset-sm3>
-      <form @submit.prevent="onCreateArticle">
+      <form @submit.prevent="onCreateTop">
         <v-layout row>
           <v-flex xs12 sm6 offset-sm3>
             <v-text-field name="link" label="Link" id="link" v-model="link" required></v-text-field>
@@ -72,7 +72,7 @@
       }
     },
     methods: {
-      onCreateArticle () {
+      onCreateTop () {
         if (!this.formIsValid) {
           return
         }
@@ -85,7 +85,7 @@
           publication: this.publication,
           date: new Date()
         }
-        this.$store.dispatch('createArticle', contentData)
+        this.$store.dispatch('createTops', contentData)
         this.$router.push('/')
       }
     }

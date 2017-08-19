@@ -31,5 +31,6 @@ new Vue({
       messagingSenderId: '24893826556'
     })
     this.$store.dispatch('loadArticles')
+    this.$store.dispatch('loadTops')
   }
 })

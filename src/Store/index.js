@@ -167,10 +167,10 @@ export const store = new Vuex.Store({
   },
   getters: {
     loadedArticles (state) {
-      return state.loadedArticles
+      return state.loadedArticles.slice(0, 6)
     },
     tops (state, getters) {
-      return state.tops.slice(0, 6)
+      return state.tops.slice(0, 2)
     },
     user (state) {
       return state.user

@@ -15,25 +15,22 @@
       </v-flex>
 
       <v-flex xs7 m6 class="ml3" flexbox align-center>
+        <div id=header>
           <h6 class="text-xs-center text-md-left primary--text">The latest and greatest of fintech.</h6>
+        </div>
       </v-flex>
 
-    </v-layout>
 
-        <v-toolbar class="primary">
-          <v-toolbar-items>
-            <v-btn dark flat v-for="item in menuItems" :key="item.title" router :to="item.link">
-          {{ item.title }}
-        </v-btn>
-          </v-toolbar-items>
-        </v-toolbar>
+    </v-layout>
+<v-divider class="pt-1"></v-divider>
+
 
     <main>
       <router-view></router-view>
     </main>
 
-    <v-footer fixed="fixed">
-      <span>&copy; 2017</span>
+    <v-footer>
+      <span>&copy; The latest and greatest of fintech news....2017<a>Some Finmash Blog</a></span>
     </v-footer>
 
   </v-flex>
@@ -71,4 +68,8 @@ export default {
 
 <style lang="stylus">
   @import './stylus/main'
+
+  #header{
+    font-style
+  }
 </style>

@@ -20,7 +20,7 @@
           </v-flex>
         </v-layout>
 
-        <v-layout row wrap v-for="top in tops" :key="top.id" class="ml-1 info">
+        <v-layout row wrap v-for="top in tops" :key="top.id" class="ml-1">
 
           <v-flex xs12>
             <a v-bind:href="top.link">
@@ -61,17 +61,6 @@
 
         </v-layout>
 
-        <v-layout>
-          <v-flex xs12 class="text-xs-center">
-            <v-progress-circular
-            indeterminate
-            class="primary--text"
-            :width="7"
-            :size="70"
-            v-if="loading"></v-progress-circular>
-          </v-flex>
-        </v-layout>
-
         <v-layout row wrap v-for="content in contents" :key="content.id" class="ml-1">
 
           <v-flex xs12 class="pt-2">
@@ -106,6 +95,12 @@
 
       </v-layout>
 
+      <v-layout row>
+        <v-flex xs12>
+          <h6 class="primary--text"> Editorials</h6>
+        </v-flex>
+      </v-layout>
+
       <v-layout>
         <v-flex xs12 class="text-xs-center">
           <v-progress-circular
@@ -117,15 +112,9 @@
         </v-flex>
       </v-layout>
 
-      <v-layout row>
-        <v-flex xs12>
-          <h6 class="primary--text"> Editorials</h6>
-        </v-flex>
-      </v-layout>
-
       <v-layout row wrap v-for="editorial in editorials" :key="editorial.id" class="ml-1">
 
-        <v-flex xs12 class="pt-2 info">
+        <v-flex xs12 class="pt-2">
           <a v-bind:href="editorial.link">
                 <v-layout row>
 

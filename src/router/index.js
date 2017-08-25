@@ -2,7 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
 import About from '@/components/About'
-import List from '@/components/Article/List'
+import ListArticle from '@/components/Article/listArticle'
+import ListTop from '@/components/Article/listTop'
+import ListEditorial from '@/components/Article/listEditorial'
 import CreateArticle from '@/components/Article/createArticle'
 import CreateTop from '@/components/Article/createTop'
 import CreateEditorial from '@/components/Article/createEditorial'
@@ -22,9 +24,19 @@ export default new Router({
       component: About
     },
     {
-      path: '/list',
-      name: 'List',
-      component: List
+      path: '/listTop',
+      name: 'ListTop',
+      component: ListTop
+    },
+    {
+      path: '/listArticle',
+      name: 'ListArticle',
+      component: ListArticle
+    },
+    {
+      path: '/listEditorial',
+      name: 'ListEditorial',
+      component: ListEditorial
     },
     {
       path: '/article/new',

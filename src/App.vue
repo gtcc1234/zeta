@@ -58,7 +58,9 @@ export default {
       date: '',
       menuItems: [
         { title: 'Home', link: '/' },
-        { title: 'List', link: '/list' },
+        { title: 'List Top News', link: '/listTop' },
+        { title: 'List Articles', link: '/listArticle' },
+        { title: 'List Editorials', link: '/listEditorial' },
         { title: 'Create Article', link: '/article/new' },
         { title: 'Create Top News', link: '/article/newTop' },
         { title: 'Create Editorial', link: '/article/newEditorial' }

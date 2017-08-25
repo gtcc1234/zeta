@@ -20,7 +20,7 @@
           </v-flex>
         </v-layout>
 
-        <v-layout row wrap v-for="top in tops" :key="top.id" class="ml-1">
+        <v-layout row wrap v-for="top in tops" :key="top.id" class="ml-1 info">
 
           <v-flex xs12>
             <a v-bind:href="top.link">

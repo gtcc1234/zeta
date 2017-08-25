@@ -1,7 +1,6 @@
 <template>
   <v-app light>
-      <link rel="shortcut icon" type="image/png" href="/static/logo.png"/>
-      <v-layout fill-height>
+    <v-layout fill-height>
         <v-flex xs1 m2 class="ml-3 mr-2 hidden-sm-and-up pl-4" offset-m-2 flexbox >
           <img src="../src/assets/logo.png" height="60em"></img>
         </v-flex>
@@ -24,6 +23,36 @@
     </v-layout>
 <v-divider class="pt-1"></v-divider>
 
+    <div id="menu">
+
+    <v-navigation-drawer temporary v-model="sideNav">
+      <v-list-tile
+      v-for="item in menuItems"
+      :key="item.title" router :to="item.link">
+        <v-list-tile-action>
+          <v-icon>{{ item.icon }}</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          {{ item.title }}
+        </v-list-tile-content>
+    </v-list-tile>
+    </v-navigation-drawer>
+
+
+    <v-toolbar dark class="primary" xs2>
+      <v-toolbar-side-icon @click.native.stop="sideNav = !sideNav" class="hidden-sm-and-up">  </v-toolbar-side-icon>
+      <v-toolbar-items class="hidden-xs-only">
+        <v-btn flat v-for="item in menuItems" :key="item.title" router :to="item.link">
+          {{ item.title }}
+        </v-btn>
+        </v-toolbar-items>
+
+      <v-spacer></v-spacer>
+      <div id="date">
+      <p class="white--text mb0"> {{ date | date }} </p>
+    </div>
+    </v-toolbar>
+  </div>
 
     <main>
       <router-view></router-view>

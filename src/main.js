@@ -8,12 +8,18 @@ import * as firebase from 'firebase'
 import { store } from './Store'
 import DateFilter from './filters/date'
 import CurrencyFilter from './filters/currency'
+import VueAnalytics from 'vue-analytics'
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 Vue.filter('date', DateFilter)
 Vue.filter('usd', CurrencyFilter)
+
+Vue.use(VueAnalytics, {
+  id: 'UA-104194399-1',
+  router
+})
 
 /* eslint-disable no-new */
 new Vue({

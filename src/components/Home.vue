@@ -177,12 +177,15 @@
           <h6 class="primary--text">Some Twitter Feed</h6>
         </v-layout>
 
+<a class="twitter-timeline" href="https://twitter.com/finmashing">Tweets by finmashing</a>
     </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+  import Tweet from 'vue-tweet-embed'
+
   export default {
     data () {
       return {
@@ -213,6 +216,7 @@
         return this.$store.getters.editContents
       }
     },
+    components: {'component-view': Tweet},
     mounted () {
       setInterval(this.load, 1000)
     },

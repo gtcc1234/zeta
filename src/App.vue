@@ -1,12 +1,12 @@
 <template>
   <v-app light>
-
+      <link rel="shortcut icon" type="image/png" href="/static/logo.png"/>
       <v-layout fill-height>
-        <v-flex xs1 m2 class="ml-3 mr-2 hidden-sm-and-up" offset-m-2 flexbox >
+        <v-flex xs1 m2 class="ml-3 mr-2 hidden-sm-and-up pl-4" offset-m-2 flexbox >
           <img src="../src/assets/logo.png" height="60em"></img>
         </v-flex>
 
-        <v-flex xs1 m2 class="ml-3 mr-2 hidden-xs-only" offset-xs-1 flexbox >
+        <v-flex xs1 m2 class="ml-3 mr-2 hidden-xs-only pl-4" offset-xs-1 flexbox >
           <img src="../src/assets/logo.png" height="70em"></img>
         </v-flex>
 
@@ -16,7 +16,7 @@
 
       <v-flex xs7 m6 class="ml3" flexbox align-center>
         <div id=header>
-          <h6 class="text-xs-center text-md-left primary--text">The latest and greatest of fintech.</h6>
+          <h6 class="text-xs-center text-md-left primary--text">{{ date | date }}</h6>
         </div>
       </v-flex>
 

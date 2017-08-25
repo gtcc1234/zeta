@@ -177,7 +177,9 @@
           <h6 class="primary--text">Some Twitter Feed</h6>
         </v-layout>
 
+<component-view></component-view>
 <a class="twitter-timeline" href="https://twitter.com/finmashing">Tweets by finmashing</a>
+
     </v-flex>
     </v-layout>
   </v-container>

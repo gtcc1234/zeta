@@ -106,6 +106,50 @@
 
       </v-layout>
 
+      <v-layout>
+        <v-flex xs12 class="text-xs-center">
+          <v-progress-circular
+          indeterminate
+          class="primary--text"
+          :width="7"
+          :size="70"
+          v-if="loading"></v-progress-circular>
+        </v-flex>
+      </v-layout>
+
+      <v-layout row wrap v-for="editorial in editorials" :key="editorial.id" class="ml-1">
+
+        <v-flex xs12 class="pt-2">
+          <a v-bind:href="editorial.link">
+                <v-layout row>
+
+                  <v-flex xs8 sm9 md10>
+                      <div>
+                      {{ editorial.author }}  |  {{ editorial.publication }}
+                      </div>
+                      <div>
+                        <h6 class="primary--text mb-0">{{ editorial.title }}</h6>
+                        <div class="black--text">{{ editorial.description }}</div>
+                      </div>
+                  </v-flex>
+
+                  <v-flex xs4 sm3 md2 class="hidden-sm-and-down pb-2">
+                        <v-card-media
+                        :src="editorial.imageUrl"
+                        height="60px"
+                        contain
+                        ></v-card-media>
+                      </v-flex>
+
+                </v-layout>
+
+              </a>
+          <v-flex class="mb-2">
+          <v-divider></v-divider>
+        </v-flex>
+        </v-flex>
+
+    </v-layout>
 
 
 

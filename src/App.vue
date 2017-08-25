@@ -46,11 +46,6 @@
           {{ item.title }}
         </v-btn>
         </v-toolbar-items>
-
-      <v-spacer></v-spacer>
-      <div id="date">
-      <p class="white--text mb0"> {{ date | date }} </p>
-    </div>
     </v-toolbar>
   </div>
 
@@ -77,10 +72,10 @@ export default {
       date: '',
       menuItems: [
         { title: 'Home', link: '/' },
-        { title: 'About', link: '/about' },
         { title: 'List', link: '/list' },
         { title: 'Create Article', link: '/article/new' },
-        { title: 'Create Top News', link: '/article/newTop' }
+        { title: 'Create Top News', link: '/article/newTop' },
+        { title: 'Create Editorial', link: '/article/newEditorial' }
       ]
     }
   },

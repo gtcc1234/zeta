@@ -5,6 +5,7 @@ import About from '@/components/About'
 import List from '@/components/Article/List'
 import CreateArticle from '@/components/Article/createArticle'
 import CreateTop from '@/components/Article/createTop'
+import CreateEditorial from '@/components/Article/createEditorial'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/article/newTop',
       name: 'CreateTop',
       component: CreateTop
+    },
+    {
+      path: '/article/newEditorial',
+      name: 'CreateEditorial',
+      component: CreateEditorial
     }
   ],
   mode: 'history'

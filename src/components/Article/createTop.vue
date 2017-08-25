@@ -20,7 +20,7 @@
         </v-layout>
         <v-layout row>
           <v-flex xs12 sm6 offset-sm3>
-            <v-text-field name="author" label="Author" id="author" v-model="author" required></v-text-field>
+            <v-text-field name="author" label="Author" id="author" v-model="author"></v-text-field>
           </v-flex>
         </v-layout>
         <v-layout row>
@@ -68,7 +68,7 @@
     },
     computed: {
       formIsValid () {
-        return this.title !== '' && this.link !== '' && this.description !== '' && this.author !== '' && this.publication !== ''
+        return this.title !== '' && this.link !== '' && this.description !== '' && this.publication !== ''
       }
     },
     methods: {

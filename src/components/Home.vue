@@ -117,9 +117,15 @@
         </v-flex>
       </v-layout>
 
+      <v-layout row>
+        <v-flex xs12>
+          <h6 class="primary--text"> Editorials</h6>
+        </v-flex>
+      </v-layout>
+
       <v-layout row wrap v-for="editorial in editorials" :key="editorial.id" class="ml-1">
 
-        <v-flex xs12 class="pt-2">
+        <v-flex xs12 class="pt-2 info">
           <a v-bind:href="editorial.link">
                 <v-layout row>
 
@@ -151,8 +157,6 @@
 
     </v-layout>
 
-
-
       </v-flex>
 
       <v-flex class="hidden-xs-only " sm4 md3 offset-md1>
@@ -170,22 +174,19 @@
               <v-flex>
                 Litecoin <v-spacer></v-spacer>  {{ ltc | usd }}
               </v-flex>
+              <v-flex>
+                BitcoinCash <v-spacer></v-spacer>  {{ bcc | usd }}
+              </v-flex>
+              <v-flex>
+                XRP <v-spacer></v-spacer>  {{ xrp | usd }}
+              </v-flex>
 
           </v-flex>
         </v-layout>
 
         <v-layout row class="mb-0">
-          <h6 class="primary--text">Weekly Newsletter</h6>
+          <h6 class="primary--text">Some Twitter Feed</h6>
         </v-layout>
-
-        <v-layout row class="mt-0 mb-2">
-          <v-flex xs10>
-            <form @submit.prevent="onCreateContent">
-            <v-text-field class="mb-0" name="email" label="E-mail" id="email" v-model="email"></v-text-field>
-            <v-btn class="primary mt-0" :disabled="!formIsValid" type="Submit">Subscribe</v-btn>
-            </form>
-        </v-flex>
-      </v-layout>
 
     </v-flex>
     </v-layout>
@@ -199,7 +200,8 @@
         btc: '',
         eth: '',
         ltc: '',
-        email: ''
+        bcc: '',
+        xrp: ''
       }
     },
     computed: {
@@ -235,6 +237,12 @@
         })
         fetch('https://www.coincap.io/page/LTC').then(res => res.json()).then(rest => {
           this.ltc = rest.price_usd
+        })
+        fetch('https://www.coincap.io/page/BCC').then(res => res.json()).then(rest => {
+          this.bcc = rest.price_usd
+        })
+        fetch('https://www.coincap.io/page/XRP').then(res => res.json()).then(rest => {
+          this.xrp = rest.price_usd
         })
       }
     }

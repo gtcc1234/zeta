@@ -84,10 +84,6 @@
   export default {
     data () {
       return {
-        btc: '',
-        eth: '',
-        ltc: '',
-        email: ''
       }
     },
     computed: {
@@ -97,9 +93,6 @@
       tops () {
         return this.$store.getters.tops
       },
-      formIsValid () {
-        return this.email !== ''
-      },
       editors () {
         return this.$store.getters.editContents
       }
@@ -108,16 +101,6 @@
       setInterval(this.load, 1000)
     },
     methods: {
-      load () {
-        fetch('https://www.coincap.io/page/ETH').then(res => res.json()).then(rest => {
-          this.eth = rest.price_usd
-        })
-        fetch('https://www.coincap.io/page/BTC').then(res => res.json()).then(rest => {
-          this.btc = rest.price_usd
-        })
-        fetch('https://www.coincap.io/page/LTC').then(res => res.json()).then(rest => {
-          this.ltc = rest.price_usd
-        })
       },
       removeBook: function (article) {
         let artRef = firebase.database().ref('Articles')

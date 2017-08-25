@@ -32,5 +32,6 @@ new Vue({
     })
     this.$store.dispatch('loadArticles')
     this.$store.dispatch('loadTops')
+    this.$store.dispatch('loadEditorials')
   }
 })

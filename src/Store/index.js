@@ -21,7 +21,7 @@ export const store = new Vuex.Store({
       state.tops = payload
     },
     setEditorials (state, payload) {
-      state.editorials.push(payload)
+      state.editorials = payload
     },
     setUser (state, payload) {
       state.user = payload
@@ -60,7 +60,6 @@ export const store = new Vuex.Store({
           }
           // call on mutation
           commit('setLoadedArticles', articles)
-          // console.log(editorialsRef)
           // set loading to false
           commit('setLoading', false)
         })
@@ -94,7 +93,6 @@ export const store = new Vuex.Store({
           }
           // call on mutation
           commit('setTops', tops)
-          // console.log(editorialsRef)
           // set loading to false
           commit('setLoading', false)
         })
@@ -105,17 +103,17 @@ export const store = new Vuex.Store({
           }
         )
     },
-    oadTops ({commit}) {
+    loadEditorials ({commit}) {
       commit('setLoading', true)
       let db = firebase.database()
       let editRef = db.ref('Editorials')
 
       editRef.once('value')
         .then((data) => {
-          const edits = []
+          const edit = []
           const obj = data.val()
           for (let key in obj) {
-            edits.push({
+            edit.push({
               id: key,
               title: obj[key].title,
               author: obj[key].author,
@@ -127,8 +125,7 @@ export const store = new Vuex.Store({
             })
           }
           // call on mutation
-          commit('setEditorials', edits)
-          // console.log(editorialsRef)
+          commit('setEditorials', edit)
           // set loading to false
           commit('setLoading', false)
         })

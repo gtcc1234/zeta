@@ -24,7 +24,7 @@
 <v-divider class="pt-1"></v-divider>
 
     <div id="menu">
-      
+
     <v-toolbar dark class="primary" xs2>
       <v-toolbar-side-icon @click.native.stop="sideNav = !sideNav" class="hidden-sm-and-up">  </v-toolbar-side-icon>
       <v-toolbar-items class="hidden-xs-only">
@@ -39,8 +39,8 @@
       <router-view></router-view>
     </main>
 
-    <v-footer>
-      <span>&copy; The latest and greatest of fintech news....2017<a>Some Finmash Blog</a></span>
+    <v-footer class="primary white--text" light>
+      <span>&copy; 2017 <a href='www.google.com' class="black--text">Finmash.</a> Bringing you the latest & greatest on fintech. All rights reserved. </span>
     </v-footer>
 
   </v-flex>
